@@ -1,0 +1,22 @@
+[user]
+	name = 75asa
+	email = 75asa.me@gmail.com
+[core]
+	editor = vim
+	excludesfile = /Users/75asa/.gitignore_global
+	ignorecase = false
+	ui = true
+	quotepath = false
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+	ff = only
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/75asa/.stCommitMsg
