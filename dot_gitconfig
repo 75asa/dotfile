@@ -20,3 +20,7 @@
 	trustExitCode = true
 [commit]
 	template = /Users/75asa/.stCommitMsg
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[wt]
+	basedir = .git/wt
