@@ -59,7 +59,7 @@ let g:lsp_settings_enable_suggestions = 0
 " ペーストモードトグル（F2）
 set pastetoggle=<F2>
 
-" ターミナルのブラケットペーストで自動paste modeにならないようにする
+" ブラケットペーストを有効化（xterm/screen 系で貼り付け時に自動で paste mode に入る）
 if &term =~ "xterm" || &term =~ "screen"
   let &t_BE = "\e[?2004h"
   let &t_BD = "\e[?2004l"

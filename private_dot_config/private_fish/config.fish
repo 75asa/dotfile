@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/75asa/.docker/bin"
+# End of Docker Desktop section.
+
 switch (uname -m)
 case x86_64
   set HOMEBREW_DIR /usr/local
@@ -67,7 +71,9 @@ end
 function pwcp
   pwd | pbcopy
 end
-mise activate fish | source
+if type -q mise
+    mise activate fish | source
+end
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
