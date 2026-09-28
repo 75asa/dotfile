@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/75asa/.docker/bin"
+# End of Docker Desktop section.
+
 switch (uname -m)
 case x86_64
   set HOMEBREW_DIR /usr/local
@@ -34,14 +38,10 @@ alias tr='tree -N'
 alias l 'ls -SAlh'
 alias ep "echo $PATH | gsed 's/ /\\n/g'"
 alias cpwd 'pwd | pbcopy'
-alias gcc='gitmoji -c'
+alias gmc 'gitmoji -c'
 
 # 文字コードの指定
 set -x LANG ja_JP.UTF-8
-
-# anyenv
-set -x PATH $HOME/.anyenv/bin $PATH
-eval (anyenv init - | source)
 
 function peco_sync_select_history
   history-merge
@@ -59,7 +59,7 @@ end
 
 function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'
-  bind \c] 'stty sane; peco_select_ghq_repository'
+  bind \cx 'stty sane; peco_select_ghq_repository'
 end
 
 
@@ -70,4 +70,16 @@ end
 
 function pwcp
   pwd | pbcopy
+end
+if type -q mise
+    mise activate fish | source
+end
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+
+# git-wt: `git wt <branch>` で worktree 作成 + cd
+if type -q git-wt
+    git wt --init fish | source
 end

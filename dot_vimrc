@@ -51,6 +51,21 @@ set wildmenu
 set ruler
 set showmatch
 set clipboard+=unnamed
+set noswapfile
+
+" vim-lsp-settings: 自動サーバーサジェスト無効化
+let g:lsp_settings_enable_suggestions = 0
+
+" ペーストモードトグル（F2）
+set pastetoggle=<F2>
+
+" ブラケットペーストを有効化（xterm/screen 系で貼り付け時に自動で paste mode に入る）
+if &term =~ "xterm" || &term =~ "screen"
+  let &t_BE = "\e[?2004h"
+  let &t_BD = "\e[?2004l"
+  exec "set t_PS=\e[200~"
+  exec "set t_PE=\e[201~"
+endif
 
 " line number color
 highlight lineNr term=underline ctermfg=11 guifg=Grey
