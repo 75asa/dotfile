@@ -1,0 +1,87 @@
+# 75asa の Mac 共通設定（mise bootstrap）
+# 新しい Mac では: mise bootstrap --adopt 75asa/dotfile
+# マシンごとのモジュールは ~/.config/mise/miserc.local.toml の env で選ぶ（例: env = ["work"]）
+
+[settings]
+# プロジェクトの .node-version / .python-version などを読む
+idiomatic_version_file_enable_tools = ["node", "python"]
+
+[tools]
+node = "24"
+pnpm = "10"
+rust = "latest"
+go = "latest"
+uv = "latest"
+"npm:@mermaid-js/mermaid-cli" = "latest"
+"npm:commitizen" = "latest"
+"npm:czg" = "latest"
+"npm:takt" = "latest"
+
+[bootstrap.brew]
+# 既に /Applications にある app は入れ直さずに管理下に入れる
+adopt = true
+
+[bootstrap.packages]
+# CLI
+"brew:act" = "latest"
+"brew:awscli" = "latest"
+"brew:bash" = "latest"
+"brew:biome" = "latest"
+"brew:cairo" = "latest"
+"brew:colima" = "latest"
+"brew:container" = "latest"
+"brew:direnv" = "latest"
+"brew:docker" = "latest"
+"brew:docker-compose" = "latest"
+"brew:eza" = "latest"
+"brew:fd" = "latest"
+"brew:gh" = "latest"
+"brew:ghostscript" = "latest"
+"brew:ghq" = "latest"
+"brew:gnu-sed" = "latest"
+"brew:imagemagick" = "latest"
+"brew:neovim" = "latest"
+"brew:nkf" = "latest"
+"brew:peco" = "latest"
+"brew:starship" = "latest"
+"brew:tree" = "latest"
+# アプリ
+"brew-cask:1password" = "latest"
+"brew-cask:1password-cli" = "latest"
+"brew-cask:alt-tab" = "latest"
+"brew-cask:claude" = "latest"
+"brew-cask:cursor" = "latest"
+"brew-cask:figma" = "latest"
+"brew-cask:font-blex-mono-nerd-font" = "latest"
+"brew-cask:font-jetbrains-mono-nerd-font" = "latest"
+"brew-cask:ghostty" = "latest"
+"brew-cask:google-chrome" = "latest"
+"brew-cask:karabiner-elements" = "latest"
+"brew-cask:monitorcontrol" = "latest"
+"brew-cask:notion" = "latest"
+"brew-cask:raycast" = "latest"
+"brew-cask:rectangle" = "latest"
+"brew-cask:shottr" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+"brew-cask:manaflow-ai/cmux/cmux" = "latest"
+
+[bootstrap.brew.taps]
+"manaflow-ai/cmux" = "https://github.com/manaflow-ai/homebrew-cmux.git"
+
+[dotfiles]
+"~/.zshrc" = { source = "home/zshrc" }
+"~/.zprofile" = { source = "home/zprofile" }
+"~/.zshenv" = { source = "home/zshenv" }
+"~/.gitconfig" = { source = "home/gitconfig" }
+"~/.gitconfig-personal" = { source = "home/gitconfig-personal" }
+"~/.gitignore_global" = { source = "home/gitignore_global" }
+"~/.config/git/ignore" = { source = "home/config/git/ignore" }
+"~/.config/starship.toml" = { source = "home/config/starship.toml" }
+"~/.config/ghostty/config" = { source = "home/config/ghostty/config" }
+"~/.config/nvim" = { source = "home/config/nvim" }
+"~/.ssh/config" = { source = "home/ssh/config", mode = "copy" }
+
+# 今の Mac の値をそのまま宣言（変えたものだけ）
+[bootstrap.macos.dock]
+autohide = true
+tilesize = 64

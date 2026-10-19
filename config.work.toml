@@ -1,0 +1,12 @@
+# 仕事用 Mac（Intune 管理）だけのモジュール
+# Office・Teams・Edge・Defender・Box・OneDrive などは Company Portal が入れるのでここには書かない
+
+[tools]
+"npm:aws-azure-login" = "latest"
+
+[bootstrap.packages]
+"brew:glab" = "latest"
+"brew:sf" = "latest"
+"brew-cask:corretto" = "latest"
+"brew-cask:slack" = "latest"
+"brew-cask:zoom" = "latest"

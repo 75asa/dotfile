@@ -1,47 +1,43 @@
 # dotfiles
-75asa's dotfiles managed by [chezmoi](https://www.chezmoi.io/).
 
-## Get started
+75asa's Mac setup, managed by [mise bootstrap](https://mise.jdx.dev/bootstrap.html):
+packages (Homebrew formulae / casks), runtimes, dotfiles and macOS defaults in one config.
 
-#### 1. Install chezmoi and 1Password CLI
+## New Mac
 
-```
-brew install chezmoi 1password-cli
-```
+```sh
+# 1. Homebrew と mise
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install mise
 
-#### 2. Clone dotfiles
+# 2. このマシンのモジュールを選ぶ（work / personal）
+mkdir -p ~/.config/mise
+echo 'env = ["work"]' > ~/.config/mise/miserc.local.toml
 
-```
-chezmoi init https://github.com/75asa/dotfile.git
-```
-
-#### 3. Sign in to 1Password CLI
-
-`~/.ssh/id_rsa` is fetched from 1Password. If the 1Password app integration is enabled, this step is not needed.
-
-```
-# On bash / zsh
-eval $(op signin)
-# On fish
-op signin | source
+# 3. このリポジトリを ~/.config/mise に clone して適用
+mise bootstrap --adopt 75asa/dotfile --dry-run
+mise bootstrap --adopt 75asa/dotfile
 ```
 
-#### 4. Apply dotfiles
+After that, `git pull` in `~/.config/mise` and run `mise bootstrap` to apply changes (only the diff is applied).
 
-```
-chezmoi diff
-chezmoi apply
-```
+## Layout
 
-## Update
+| File | Purpose |
+|---|---|
+| `config.toml` | Shared: CLI, apps, runtimes (`[tools]`), dotfiles, macOS defaults |
+| `config.work.toml` | Work Mac only (apps that Company Portal does not install) |
+| `config.personal.toml` | Personal Mac only |
+| `home/` | Dotfile sources, symlinked into `~` |
+| `miserc.local.toml` | Per machine module selection (not committed) |
 
-After editing a managed file in place, pull the change back into the source:
+## Not in this repo (per machine)
 
-```
-chezmoi re-add
-```
+- `~/.gitconfig.local`, `~/.ssh/config.local`: internal hosts (e.g. a company GitLab) — kept out because this repo is public.
+- SSH keys: stored in 1Password and served by its SSH agent. Export the public keys from 1Password to
+  `~/.ssh/id_ed25519.pub` and `~/.ssh/id_ed25519_personal.pub` (used only to pick the key per host).
 
-## FYI
+## Legacy: chezmoi
 
-- [chezmoi で dotfiles を手軽に柔軟にセキュアに管理する](https://zenn.dev/ryo_kawamata/articles/introduce-chezmoi)
-- [1Password CLI: Get started](https://developer.1password.com/docs/cli/get-started/)
+The `dot_*` / `private_*` files are the old [chezmoi](https://www.chezmoi.io/) source; they are ignored by mise
+and will be removed once the mise setup is confirmed on the new Mac.
