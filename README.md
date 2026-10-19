@@ -14,9 +14,11 @@ brew install mise
 mkdir -p ~/.config/mise
 echo 'env = ["work"]' > ~/.config/mise/miserc.local.toml
 
-# 3. このリポジトリを ~/.config/mise に clone して適用
-mise bootstrap --adopt 75asa/dotfile --dry-run
-mise bootstrap --adopt 75asa/dotfile
+# 3. このリポジトリを ~/.config/mise に clone し、計画を確認してから適用
+#    （`mise bootstrap --adopt 75asa/dotfile` でも同じ状態になるが、--dry-run は clone 前だと clone コマンドしか表示しない）
+git clone https://github.com/75asa/dotfile.git ~/.config/mise
+mise bootstrap --dry-run
+mise bootstrap
 ```
 
 After that, `git pull` in `~/.config/mise` and run `mise bootstrap` to apply changes (only the diff is applied).
