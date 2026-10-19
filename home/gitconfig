@@ -1,0 +1,21 @@
+[user]
+	name = NAGO Asato
+	email = 97085790+ACN-Asato-NAGO@users.noreply.github.com
+
+[includeIf "gitdir:~/ghq/github.com/75asa/"]
+	path = ~/.gitconfig-personal
+[ghq]
+	root = ~/ghq
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = ~/.gitignore_global
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+# 社内 GitLab などマシン固有の設定は公開しない: ~/.gitconfig.local に置く（リポジトリ管理外）
+[include]
+	path = ~/.gitconfig.local

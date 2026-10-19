@@ -1,0 +1,8 @@
+# 個人用 Mac だけのモジュール
+
+[tools]
+"npm:firebase-tools" = "latest"
+
+[bootstrap.packages]
+"brew:supabase" = "latest"
+"brew-cask:spotify" = "latest"

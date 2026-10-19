@@ -1,0 +1,88 @@
+# === peco ===
+function ghq-peco() {
+  local dir
+  dir=$(ghq list -p | peco)
+  if [ -n "$dir" ]; then
+    cd "$dir"
+  fi
+}
+zle -N ghq-peco
+bindkey '^X' ghq-peco
+
+function history-peco() {
+  local cmd
+  cmd=$(history | awk '{$1=""; print $0}' | tail -r | peco | sed 's/^ //')
+  if [ -n "$cmd" ]; then
+    BUFFER=$cmd
+    zle redisplay
+  fi
+}
+zle -N history-peco
+bindkey '^R' history-peco
+
+function file-peco() {
+  local file
+  file=$(fd --type f | peco)
+  if [ -n "$file" ]; then
+    BUFFER="$file"
+    zle redisplay
+  fi
+}
+zle -N file-peco
+bindkey '^D' file-peco
+
+
+# Gitブランチをプロンプトに表示
+autoload -Uz vcs_info
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' formats ' (%b)'
+setopt PROMPT_SUBST
+PROMPT='%F{green}%~%F{yellow}${vcs_info_msg_0_}%f $ '
+
+
+# nvim
+alias vi='nvim'
+alias vim='nvim'
+# ls -> eza
+alias l='eza -la --icons --git --group-directories-first'
+# Git
+alias gs='git status -sb'
+alias ga='git add'
+alias gaa='git add -A'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit --amend'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gl='git log --graph --oneline --decorate'
+alias gla='git log --graph --oneline --decorate --all'
+alias gp='git pull'
+alias gpu='git push'
+alias gpuf='git push --force-with-lease'  # 安全なforce push
+alias gst='git stash'
+alias gstp='git stash pop'
+alias gstl='git stash list'
+alias grb='git rebase'
+alias grbi='git rebase -i'
+alias grs='git restore'
+alias grss='git restore --staged'
+alias gcp='git cherry-pick'
+eval "$(direnv hook zsh)"
+
+# uv - Python package & version manager
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+    compinit
+else
+    compinit -C
+fi
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+[[ -f ~/claudecode/claude-switch.sh ]] && source ~/claudecode/claude-switch.sh
+
+# mise
+eval "$(mise activate zsh)"
