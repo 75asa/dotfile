@@ -8,6 +8,9 @@ packages (Homebrew formulae / casks), runtimes, dotfiles and macOS defaults in o
 ```sh
 # 1. Homebrew と mise
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#    インストーラーが最後に案内する「~/.zprofile に brew shellenv を追記」はしない
+#    （home/zprofile が入れる。追記すると dotfiles が既存ファイルとぶつかって止まる）
+eval "$(/opt/homebrew/bin/brew shellenv)"
 brew install mise
 
 # 2. このマシンのモジュールを選ぶ（work / personal）
