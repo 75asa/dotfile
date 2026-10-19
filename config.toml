@@ -63,10 +63,10 @@ adopt = true
 "brew-cask:rectangle" = "latest"
 "brew-cask:shottr" = "latest"
 "brew-cask:visual-studio-code" = "latest"
-"brew-cask:manaflow-ai/cmux/cmux" = "latest"
 
-[bootstrap.brew.taps]
-"manaflow-ai/cmux" = "https://github.com/manaflow-ai/homebrew-cmux.git"
+# cmux は tap の cask で、dry-run の評価に Ruby 3 が要り計画全体が止まるため、宣言せず hook で入れる
+[bootstrap.hooks]
+post-packages = "brew list --cask cmux >/dev/null 2>&1 || brew install --cask manaflow-ai/cmux/cmux"
 
 [dotfiles]
 "~/.zshrc" = { source = "home/zshrc" }
