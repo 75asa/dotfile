@@ -62,6 +62,7 @@ adopt = true
 "brew-cask:raycast" = "latest"
 "brew-cask:rectangle" = "latest"
 "brew-cask:shottr" = "latest"
+"brew-cask:thaw" = "latest"
 "brew-cask:visual-studio-code" = "latest"
 
 # cmux は tap の cask で、dry-run の評価に Ruby 3 が要り計画全体が止まるため、宣言せず hook で入れる
