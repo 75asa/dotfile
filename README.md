@@ -22,6 +22,10 @@ echo 'env = ["work"]' > ~/.config/mise/miserc.local.toml
 git clone https://github.com/75asa/dotfile.git ~/.config/mise
 mise bootstrap --dry-run
 mise bootstrap
+
+# 4. （personal のみ）ログインシェルを fish にする
+grep -qx /opt/homebrew/bin/fish /etc/shells || echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+chsh -s /opt/homebrew/bin/fish
 ```
 
 After that, `git pull` in `~/.config/mise` and run `mise bootstrap` to apply changes (only the diff is applied).
@@ -32,7 +36,7 @@ After that, `git pull` in `~/.config/mise` and run `mise bootstrap` to apply cha
 |---|---|
 | `config.toml` | Shared: CLI, apps, runtimes (`[tools]`), dotfiles, macOS defaults |
 | `config.work.toml` | Work Mac only (apps that Company Portal does not install) |
-| `config.personal.toml` | Personal Mac only |
+| `config.personal.toml` | Personal Mac only (fish shell, fisher plugins) |
 | `home/` | Dotfile sources, symlinked into `~` |
 | `miserc.local.toml` | Per machine module selection (not committed) |
 

@@ -4,5 +4,19 @@
 "npm:firebase-tools" = "latest"
 
 [bootstrap.packages]
+"brew:fish" = "latest"
+"brew:fzf" = "latest"
 "brew:supabase" = "latest"
 "brew-cask:spotify" = "latest"
+
+# 個人用 Mac のログインシェルは fish（work は zsh のまま）
+# fish_variables や fisher が入れるファイルは置き場所に残すため、ディレクトリごとではなくファイル単位でリンクする
+[dotfiles]
+"~/.config/fish/config.fish" = { source = "home/config/fish/config.fish" }
+"~/.config/fish/fish_plugins" = { source = "home/config/fish/fish_plugins" }
+"~/.config/fish/functions/peco_select_ghq_repository.fish" = { source = "home/config/fish/functions/peco_select_ghq_repository.fish" }
+"~/.config/fish/functions/wt.fish" = { source = "home/config/fish/functions/wt.fish" }
+
+# fisher が無ければ入れ、fish_plugins と入っているプラグインがずれていれば揃える
+[bootstrap.hooks]
+post-dotfiles = """fish -c 'if not functions -q fisher; curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source; end; if test "$(fisher list | sort)" != "$(sort ~/.config/fish/fish_plugins)"; fisher update; end'"""
