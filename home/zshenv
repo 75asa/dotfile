@@ -1,0 +1,2 @@
+# uv / mise が入れるツールの bin
+export PATH="$HOME/.local/bin:$PATH"

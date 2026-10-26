@@ -1,0 +1,18 @@
+# 個人用 Mac の ssh 設定（work は home/ssh/config）
+# マシン固有の Host は ~/.ssh/config.local に置く（リポジトリ管理外）
+Include ~/.ssh/config.local
+Include ~/.orbstack/ssh/config
+Include ~/.colima/ssh_config
+
+# 秘密鍵は 1Password に置き、SSH エージェント経由で使う（鍵ファイルはディスクに置かない）
+# IdentityFile はリポジトリに入れた公開鍵(.pub)で、どの鍵を使うかを選ぶだけ
+Host *
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    IdentitiesOnly yes
+
+# 個人用 (75asa)
+Host github.com github-personal
+    HostName ssh.github.com
+    User git
+    Port 443
+    IdentityFile ~/.ssh/id_ed25519_personal.pub

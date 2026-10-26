@@ -1,0 +1,26 @@
+# 個人用 Mac だけのモジュール
+# シェルは別モジュール（config.fish.toml / config.zsh.toml）で選ぶ
+
+[tools]
+"npm:firebase-tools" = "latest"
+
+[bootstrap.packages]
+"brew:supabase" = "latest"
+"brew-cask:cleanshot" = "latest"
+"brew-cask:codex-app" = "latest"
+"brew-cask:deepl" = "latest"
+"brew-cask:discord" = "latest"
+"brew-cask:iterm2" = "latest"
+"brew-cask:native-access" = "latest"
+"brew-cask:orbstack" = "latest"
+"brew-cask:spotify" = "latest"
+"brew-cask:steam" = "latest"
+"brew-cask:typeless" = "latest"
+"brew-cask:vivaldi" = "latest"
+"brew-cask:warp" = "latest"
+# docker-desktop は docker / kubectl を brew:docker と同じ場所にリンクして衝突するので入れない（OrbStack か colima を使う）
+
+[dotfiles]
+"~/.gitconfig-user" = { source = "home/gitconfig-personal" }
+"~/.ssh/config" = { source = "home/ssh/config.personal", mode = "copy" }
+"~/.ssh/id_ed25519_personal.pub" = { source = "home/ssh/id_ed25519_personal.pub" }

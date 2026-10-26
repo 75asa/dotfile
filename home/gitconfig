@@ -1,0 +1,31 @@
+# 名前とメールは env（personal / work）が ~/.gitconfig-user にリンクする
+[include]
+	path = ~/.gitconfig-user
+# work の Mac でも 75asa のリポジトリは個人のアカウントでコミットする
+[includeIf "gitdir:~/ghq/github.com/75asa/"]
+	path = ~/.gitconfig-personal
+[ghq]
+	root = ~/ghq
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+	ignorecase = false
+	# 日本語のファイル名をエスケープせずに表示する
+	quotepath = false
+[pull]
+	rebase = true
+	ff = only
+# git-wt の worktree は <repo>/.git/wt に置く
+[wt]
+	basedir = .git/wt
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+# 社内 GitLab などマシン固有の設定は公開しない: ~/.gitconfig.local に置く（リポジトリ管理外）
+[include]
+	path = ~/.gitconfig.local

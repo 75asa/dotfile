@@ -1,0 +1,6 @@
+# zsh を使う Mac のモジュール（miserc.local.toml で env = ["work", "zsh"] のように選ぶ）
+
+[dotfiles]
+"~/.zshrc" = { source = "home/zshrc" }
+"~/.zprofile" = { source = "home/zprofile" }
+"~/.zshenv" = { source = "home/zshenv" }

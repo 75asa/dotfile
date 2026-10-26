@@ -1,0 +1,22 @@
+# マシン固有（社内 GitLab など）の Host は ~/.ssh/config.local に置く（リポジトリ管理外）
+Include ~/.ssh/config.local
+Include ~/.colima/ssh_config
+
+# 秘密鍵は 1Password に置き、SSH エージェント経由で使う（鍵ファイルはディスクに置かない）
+# IdentityFile は 1Password から書き出した公開鍵(.pub)で、どの鍵を使うかを選ぶだけ
+Host *
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    IdentitiesOnly yes
+
+Host github.com
+    HostName ssh.github.com
+    User git
+    Port 443
+    IdentityFile ~/.ssh/id_ed25519.pub
+
+# 個人用 (75asa)
+Host github-personal
+    HostName ssh.github.com
+    User git
+    Port 443
+    IdentityFile ~/.ssh/id_ed25519_personal.pub
