@@ -70,9 +70,6 @@ adopt = true
 post-packages = "brew list --cask cmux >/dev/null 2>&1 || brew install --cask manaflow-ai/cmux/cmux"
 
 [dotfiles]
-"~/.zshrc" = { source = "home/zshrc" }
-"~/.zprofile" = { source = "home/zprofile" }
-"~/.zshenv" = { source = "home/zshenv" }
 "~/.gitconfig" = { source = "home/gitconfig" }
 "~/.gitconfig-personal" = { source = "home/gitconfig-personal" }
 "~/.gitignore_global" = { source = "home/gitignore_global" }
@@ -80,7 +77,6 @@ post-packages = "brew list --cask cmux >/dev/null 2>&1 || brew install --cask ma
 "~/.config/starship.toml" = { source = "home/config/starship.toml" }
 "~/.config/ghostty/config" = { source = "home/config/ghostty/config" }
 "~/.config/nvim" = { source = "home/config/nvim" }
-"~/.ssh/config" = { source = "home/ssh/config", mode = "copy" }
 
 # 今の Mac の値をそのまま宣言（変えたものだけ）
 [bootstrap.macos.dock]

@@ -1,7 +1,7 @@
-[user]
-	name = NAGO Asato
-	email = 97085790+ACN-Asato-NAGO@users.noreply.github.com
-
+# 名前とメールは env（personal / work）が ~/.gitconfig-user にリンクする
+[include]
+	path = ~/.gitconfig-user
+# work の Mac でも 75asa のリポジトリは個人のアカウントでコミットする
 [includeIf "gitdir:~/ghq/github.com/75asa/"]
 	path = ~/.gitconfig-personal
 [ghq]
@@ -10,6 +10,16 @@
 	defaultBranch = main
 [core]
 	excludesfile = ~/.gitignore_global
+	editor = vim
+	ignorecase = false
+	# 日本語のファイル名をエスケープせずに表示する
+	quotepath = false
+[pull]
+	rebase = true
+	ff = only
+# git-wt の worktree は <repo>/.git/wt に置く
+[wt]
+	basedir = .git/wt
 [credential "https://github.com"]
 	helper =
 	helper = !gh auth git-credential

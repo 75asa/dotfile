@@ -10,3 +10,7 @@
 "brew-cask:corretto" = "latest"
 "brew-cask:slack" = "latest"
 "brew-cask:zoom" = "latest"
+
+[dotfiles]
+"~/.gitconfig-user" = { source = "home/gitconfig-work" }
+"~/.ssh/config" = { source = "home/ssh/config", mode = "copy" }
