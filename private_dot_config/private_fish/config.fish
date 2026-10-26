@@ -83,3 +83,6 @@ source ~/.orbstack/shell/init2.fish 2>/dev/null || :
 if type -q git-wt
     git wt --init fish | source
 end
+
+# Claude Code / git-wt など ~/.local/bin のコマンド
+fish_add_path ~/.local/bin
